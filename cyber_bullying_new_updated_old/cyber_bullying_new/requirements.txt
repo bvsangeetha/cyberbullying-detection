@@ -1,3 +1,15 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:37705d801295d7163ccdb5cfeeaac420995ed2ece8c2f7000bfe08725778d830
-size 128
+flask
+flask-session
+gunicorn
+cs50
+numpy
+pandas
+nltk
+tensorflow==2.20.0
+keras
+h5py
+opencv-python
+pillow
+pytesseract
+telepot
+googletrans==4.0.0-rc1

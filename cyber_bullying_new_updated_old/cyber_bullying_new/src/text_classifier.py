@@ -49,8 +49,6 @@ def load_text_model():
     try:
         if MODEL_FULL.exists():
             _model = load_model(str(MODEL_FULL))
-            # Re-compile the model to ensure a deterministic state for inference
-            _model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
             return _model
     except Exception:
         print('Failed to load full model, trying fallback...')
@@ -62,8 +60,6 @@ def load_text_model():
             # Attempt to load as full model first
             try:
                 _model = load_model(str(MODEL_WEIGHTS))
-                # Re-compile the model to ensure a deterministic state for inference
-                _model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
                 return _model
             except Exception:
                 # Will attempt reconstruct + load_weights
@@ -101,7 +97,6 @@ def load_text_model():
             out = Dense(out_units, activation='softmax')(X)
         model = Model(inputs=sentence_indices, outputs=out)
         model.load_weights(str(MODEL_WEIGHTS))
-        model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
         _model = model
         return _model
     except Exception as e:
